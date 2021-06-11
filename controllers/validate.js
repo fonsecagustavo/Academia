@@ -4,8 +4,7 @@ const registerValidate = (data) => {
     const schema = Joi.object({
         name: Joi.string().required().min(3).max(50),
         cpf: Joi.string().required().min(11).max(11),
-        phone: Joi.string(),
-        payday: Joi.date()
+        phone: Joi.string()
     })
 
     return schema.validate(data)
@@ -13,7 +12,7 @@ const registerValidate = (data) => {
 
 const registerPayday = (data) => {
     const schema = Joi.object({
-        cpf: Joi.string().required().min(11).max(11),
+        id: Joi.string().required(),
         payday: Joi.date().required()
     })
 

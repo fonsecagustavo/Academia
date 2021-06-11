@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require('express')
 const app = express()
+const path = require('path')
 const userRouter = require('./routes/userRouter')
 const mongoose = require('mongoose')
 
@@ -17,8 +18,10 @@ mongoose.connect(process.env.MONGO_CONNECTION_URL, {
     }
 )
 
-app.use('/',express.json(),userRouter)
+app.set('views', path.join(__dirname, './public'))
+app.set('view engine', 'ejs')
 
+app.use('/',express.json(),userRouter)
 
 app.listen(process.env.PORT, ()=> {
     console.log("Server ronning...")
